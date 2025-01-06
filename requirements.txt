@@ -4,8 +4,10 @@ matplotlib
 numpy
 scipy
 tensorboard
-torch==1.13.1
-torchvision
+torch==2.5.0
+torchvision==0.20.0
+torchaudio==2.5.0
+-f https://download.pytorch.org/whl/cu121
 unidecode
 protobuf
 tqdm
@@ -14,6 +16,5 @@ underthesea
 eng_to_ipa
 vietnam-number
 librosa
-git+https://github.com/quadrismegistus/prosodic.git
 viphoneme
 ipython
