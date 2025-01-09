@@ -99,8 +99,11 @@ def plot_spectrogram_to_numpy(spectrogram):
   plt.tight_layout()
 
   fig.canvas.draw()
-  data = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
-  data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+  # data = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
+  data = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
+  # data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+  (w,h) = fig.canvas.get_width_height()
+  data = data.reshape((h,w,4))[:,:,:3]
   plt.close()
   return data
 
@@ -128,8 +131,11 @@ def plot_alignment_to_numpy(alignment, info=None):
   plt.tight_layout()
 
   fig.canvas.draw()
-  data = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
-  data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
+  # data = np.fromstring(fig.canvas.tostring_rgb(), dtype=np.uint8, sep='')
+  data = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
+  (w,h) = fig.canvas.get_width_height()
+  data = data.reshape((h,w,4))[:,:,:3]
+  # data = data.reshape(fig.canvas.get_width_height()[::-1] + (3,))
   plt.close()
   return data
 
@@ -149,11 +155,11 @@ def get_hparams(init=True):
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--config', type=str, default="./configs/vietnamese_base.json",
                       help='JSON file for configuration')
-  parser.add_argument('-m', '--model', type=str, default = "vivos", required=True,
+  parser.add_argument('-m', '--model', type=str, default = "speech-tts",
                       help='Model name')
   
   args = parser.parse_args()
-  model_dir = "../drive/MyDrive/CS_project/TTS"
+  model_dir = "../speech/vits-va/models"
   model_dir = os.path.join(model_dir, args.model)
 
   if not os.path.exists(model_dir):

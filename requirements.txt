@@ -18,3 +18,5 @@ vietnam-number
 librosa
 viphoneme
 ipython
+
+# six pyparsing
