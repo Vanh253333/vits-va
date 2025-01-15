@@ -155,11 +155,11 @@ def get_hparams(init=True):
   parser = argparse.ArgumentParser()
   parser.add_argument('-c', '--config', type=str, default="./configs/vietnamese_base.json",
                       help='JSON file for configuration')
-  parser.add_argument('-m', '--model', type=str, default = "speech-tts",
+  parser.add_argument('-m', '--model', type=str, default = "/model",
                       help='Model name')
   
   args = parser.parse_args()
-  model_dir = "../speech/vits-va/models"
+  model_dir = "../model"
   model_dir = os.path.join(model_dir, args.model)
 
   if not os.path.exists(model_dir):

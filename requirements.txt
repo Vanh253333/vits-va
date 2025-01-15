@@ -11,7 +11,8 @@ torchaudio==2.5.0
 unidecode
 protobuf
 tqdm
-vinorm
+# vinorm
+git+https://github.com/v-nhandt21/Vinorm.git
 underthesea
 eng_to_ipa
 vietnam-number
